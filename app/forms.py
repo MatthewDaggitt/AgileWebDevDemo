@@ -1,6 +1,12 @@
-from wtforms import SelectField, StringField, SubmitField
+from wtforms import PasswordField, SelectField, StringField, SubmitField
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired
+
+
+class LoginForm(FlaskForm):
+    uwa_id = StringField("UWA ID", validators=[DataRequired()])
+    password = PasswordField("Password", validators=[DataRequired()])
+    submit = SubmitField("Login")
 
 class CreateGroupForm(FlaskForm):
     groupSize = SelectField("Group size", choices=[2,3,4])

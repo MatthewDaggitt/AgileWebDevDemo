@@ -1,9 +1,35 @@
 from flask import flash, redirect, render_template, request, url_for
+from flask_login import login_user
 from app import flaskApp, db
-from app.forms import CreateGroupForm
+from app.forms import CreateGroupForm, LoginForm
 from app.models import Group, Student
 
+
 @flaskApp.route("/")
+@flaskApp.route("/login", methods=['get', 'post'])
+def login():
+    form = LoginForm()
+    if request.method == 'GET':
+        return render_template('login.html', form=form)
+
+    studentID = form.uwa_id.data
+    student = Student.query.get(studentID)
+    if not student:
+        flash(f'No student found with ID {studentID}', 'error')
+        return render_template('login.html', form=form)
+
+    password = form.password.data
+    if not student.check_password(password):
+        flash(f'Invalid password. Please try again.', 'error')
+        return render_template('login.html', form=form)
+
+    login_user(student)
+    return redirect(url_for('groups'))
+
+@flaskApp.route("/logout")
+def logout():
+    return None
+
 @flaskApp.route("/groups")
 def groups():
     all_groups = Group.query.all()
