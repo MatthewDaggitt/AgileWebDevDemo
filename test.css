@@ -1,0 +1,11 @@
+#signUpForm {
+  background-color: rgb(0, 238, 255);
+}
+
+#existingGroups {
+  background-color: pink;
+}
+
+.studentName:hover {
+  font-weight: 800;
+}
