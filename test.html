@@ -1,76 +1,84 @@
 <html>
   <head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="test.css">
+
+    <script src="test.js"></script>
   </head>
   <body>
-    <h1> Group project sign-up</h1>
+    <div class="container">
+      <div id="title">
+        <h1> Group project sign-up</h1>
+      </div>
 
-    <div id="signUpForm">
-      <h2> Sign up</h2>
+      <div id="signUpForm">
+        <h2> Sign up</h2>
 
-      <p> Enter your student numbers of the people in your group </p>
-      <p> It is not required to have 4 people, you will be assigned members to fill out your group </p>
-      <form action="/submitGroup">
-        <label for="numberOfStudents"> Number of students so far</label>
-        <!-- <input type="number" id="numberOfStudents" min=1 max=4> -->
-        <select name="numberOfStudents" id="numberOfStudents">
-          <option value=1>1</option>
-          <option value=2>2</option>
-          <option value=3>3</option>
-          <option value=4>4</option>
-        </select>
-        <br>
+        <p> Enter your student numbers of the people in your group </p>
+        <p> It is not required to have 4 people, you will be assigned members to fill out your group </p>
+        <form action="/submitGroup">
+          <label for="numberOfStudents"> Number of students so far</label>
+          <!-- <input type="number" id="numberOfStudents" min=1 max=4> -->
+          <select name="numberOfStudents" id="numberOfStudents">
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+          </select>
+          <br>
 
-        <label for="student1"> Student 1: </label>
-        <input type="number" id="student1"> </input>
+          <label for="student1"> Student 1: </label>
+          <input type="number" id="student1"> </input>
 
-        <br>
-        <label for="student2"> Student 2: </label>
-        <input type="number" id="student2"> </input>
+          <br>
+          <label for="student2"> Student 2: </label>
+          <input type="number" id="student2"> </input>
 
-        <br>
-        <label for="student3"> Student 3: </label>
-        <input type="number" id="student3"> </input>
+          <br>
+          <label for="student3"> Student 3: </label>
+          <input type="number" id="student3"> </input>
 
-        <br>
-        <label for="student4"> Student 4: </label>
-        <input type="number" id="student4"> </input>
+          <br>
+          <label for="student4"> Student 4: </label>
+          <input type="number" id="student4"> </input>
 
-        <br>
-        <input type="submit">
-      </form>
+          <br>
+          <input class="btn btn-danger" id="submitBtn" type="submit">
+        </form>
+      </div>
+
+
+      <div id="existingGroups">
+        <h2> Existing groups</h2>
+        <table>
+          <tr>
+            <th> Group ID </th>
+            <th> Student1 </th>
+            <th> Student2 </th>
+            <th> Student3 </th>
+            <th> Student4 </th>
+          </tr>
+          <tr>
+            <td> 0 </td>
+            <td> <span class="studentName"> Rob </span>(01349824) </td>
+            <td> <span class="studentName"> Bob </span> (01349823) </td>
+            <td> <span class="studentName"> Julie </span> (01349822) </td>
+            <td> <span class="studentName"> Li </span> (01349821) </td>
+          </tr>
+          <tr>
+            <td> 1 </td>
+            <td> <span class="studentName"> Tom </span> 01349324 </td>
+            <td> <span class="studentName"> Jerry</span> 01349523 </td>
+            <td> <span class="studentName"> Cardi B</span> 01349622 </td>
+            <td> <span class="studentName"> Taylor Swift</span> 01349721 </td>
+          </tr>
+        </table>
+      </div>
+
+      <button class="btn btn-primary studentName ejectButton" onclick="ejectStudent()">
+        <span class="fa fa-trash"></span> Eject student
+      </button>
     </div>
-
-
-    <div id="existingGroups">
-      <h2> Existing groups</h2>
-      <table>
-        <tr>
-          <th> Group ID </th>
-          <th> Student1 </th>
-          <th> Student2 </th>
-          <th> Student3 </th>
-          <th> Student4 </th>
-        </tr>
-        <tr>
-          <td> 0 </td>
-          <td> <span class="studentName"> Rob </span>(01349824) </td>
-          <td> <span class="studentName"> Bob </span> (01349823) </td>
-          <td> <span class="studentName"> Julie </span> (01349822) </td>
-          <td> <span class="studentName"> Li </span> (01349821) </td>
-        </tr>
-        <tr>
-          <td> 1 </td>
-          <td> <span class="studentName"> Tom </span> 01349324 </td>
-          <td> <span class="studentName"> Jerry</span> 01349523 </td>
-          <td> <span class="studentName"> Cardi B</span> 01349622 </td>
-          <td> <span class="studentName"> Taylor Swift</span> 01349721 </td>
-        </tr>
-      </table>
-    </div>
-
-    Kick out:
-    <button class="studentName ejectButton"> Jerry </button>
-
   </body>
 </html>

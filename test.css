@@ -1,3 +1,9 @@
+#title {
+  display:flex;
+  justify-content: center;
+}
+
+
 #signUpForm {
   background-color: rgb(0, 238, 255);
 }
@@ -8,4 +14,8 @@
 
 .studentName:hover {
   font-weight: 800;
+}
+
+form:hover {
+  color: green;
 }
