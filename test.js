@@ -7,9 +7,9 @@ function sayHi() {
   alert("Hi3");
 }
 
-function ejectStudent() {
+function ejectStudents() {
   // Update the database
-  numberOfStudentsEjected += 1;
+  numberOfStudentsEjected += 2;
   displayNumberOfStudentsEjected();
 }
 
