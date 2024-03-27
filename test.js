@@ -7,9 +7,9 @@ function sayHi() {
   alert("Hi3");
 }
 
-function removeStudent() {
+function removesStudent() {
   // Update the database
-  numberOfStudentsRemove += 1;
+  numberOfStudentsRemove += 2;
   showNumberOfStudentsRemoved();
 }
 
