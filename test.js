@@ -10,10 +10,10 @@ function sayHi() {
 function removeStudent() {
   // Update the database
   numberOfStudentsRemove += 1;
-  displayNumberOfStudentsRemoved();
+  showNumberOfStudentsRemoved();
 }
 
-function displayNumberOfStudentsRemoved() {
+function showNumberOfStudentsRemoved() {
   let result = prompt("Give me a number", 7);
   console.log("Result: " + result);
 }
