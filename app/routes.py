@@ -1,20 +1,12 @@
 from flask import redirect, render_template, request, url_for
 from app import flaskApp
-from app.model import Group, Student
-
-tom = Student(uwaID= "01349324", name="Tom")
-jerry = Student(uwaID = "01349523", name="Jerry")  	
-cardi = Student(uwaID = "01349622", name="Cardi B")  	
-taylor = Student(uwaID = "01349721", name="Taylor Swift")  
-
-group1 = Group(students=[tom, jerry, cardi, taylor])
-
-projectGroups = [group1]
+from app.models import Group, Student
 
 @flaskApp.route("/")
 @flaskApp.route("/groups")
 def groups():
-    return render_template('listGroups.html', groups=projectGroups)
+    all_groups = Group.query.all()
+    return render_template('listGroups.html', groups=all_groups)
 
 
 @flaskApp.route('/create')
