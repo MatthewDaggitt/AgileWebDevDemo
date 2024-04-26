@@ -7,6 +7,16 @@
     <script src="/static/test.js"></script>
   </head>
   <body>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
     <div class="container">
       <div id="title">
         <h1> Group sign-up </h1>
@@ -16,6 +26,8 @@
         <p> Enter your student numbers of the people in your group </p>
         <p> It is not required to have 4 people, you will be assigned members to fill out your group </p>
         <form action="/submit" method="post">
+          {{ form.hidden_tag() }}
+
           <label for="numberOfStudents"> Number of students so far</label>
           <!-- <input type="number" id="numberOfStudents" min=1 max=4> -->
           <select name="numberOfStudents" id="numberOfStudents">
@@ -26,23 +38,19 @@
           </select>
           <br>
 
-          <label for="student1"> Student 1: </label>
-          <input type="number" id="student1"> </input>
-
+          {{ form.student1.label }}
+          {{ form.student1 }}
           <br>
-          <label for="student2"> Student 2: </label>
-          <input type="number" id="student2"> </input>
-
+          {{ form.student2.label }}
+          {{ form.student2 }}
           <br>
-          <label for="student3"> Student 3: </label>
-          <input type="number" id="student3"> </input>
-
+          {{ form.student3.label }}
+          {{ form.student3 }}
           <br>
-          <label for="student4"> Student 4: </label>
-          <input type="number" id="student4"> </input>
-
+          {{ form.student4.label }}
+          {{ form.student4 }}       
           <br>
-          <input class="btn btn-primary" id="submitBtn" value="Create" type="submit">
+          {{ form.submit() }}
         </form>
 
         <button class="btn btn-danger" onclick="location.href='{{ url_for('groups') }}'">

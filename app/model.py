@@ -1,12 +1,18 @@
 
 from typing import List
+from app import db
 
+class Student(db.Model):
+    uwa_id = db.Column(db.String(8), primary_key=True)
+    name = db.Column(db.String(120), nullable=False)
+    group_id = db.Column(db.Integer, db.ForeignKey('group.group_id'), nullable=True)
 
-class Student:
-    def __init__(self, uwaID:str, name:str) -> None:
-        self.uwaID:str = uwaID
-        self.name:str = name
+    group = db.relationship('Group', back_populates='students')
 
-class Group:
-    def __init__(self, students:List[Student]) -> None:
-        self.students:List[Student] = students
+    def __repr__(self) -> str:
+        return f'<Student {self.name} {self.uwa_id}>'
+
+class Group(db.Model):
+    group_id = db.Column(db.Integer, primary_key=True)
+    
+    students = db.relationship(Student, back_populates='group')
