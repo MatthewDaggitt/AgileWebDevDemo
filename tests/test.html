@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<head>
+    <title>People matcher</title>
+    <style>
+        body {
+            background-color: yellow;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .score {
+            font-weight: bold;
+        }
+
+        .underline {
+            text-decoration: underline;
+        }
+
+        .person-img {
+            border: 2px solid green;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .person-img:hover {
+            border-color: red;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="container">
+        <h1>Who's who: CS edition</h1>
+        <div class="score">Current score = <span id="score">0</span></div>
+        <div id="question"></div>
+        <div id="images"></div>
+    </div>
+
+    <script>
+        const staff = [
+            { name: "Debora Correa", image: " https://research-repository.uwa.edu.au/files-asset/180230192/MicrosoftTeams_image_1_.png?w=100&f=webp" },
+            { name: "Matthew Daggitt", image: " https://research-repository.uwa.edu.au/files-asset/310608628/me-small.jpg?w=100&f=webp" },
+            { name: "Amitava Datta", image: " https://research-repository.uwa.edu.au/files-asset/32523391/amitava.jpg?w=100&f=webp" },
+            { name: "Jin Hong", image: " https://research-repository.uwa.edu.au/files-asset/34955114/jin_full_square.jpg?w=100&f=webp" },
+            { name: "Wei Liu", image: " https://research-repository.uwa.edu.au/files-asset/32523354/wei.png?w=100&f=webp" },
+            { name: "Anwarul Patwary", image: " https://research-repository.uwa.edu.au/files-asset/108726398/rsz_screen_shot_2021_04_21_at_101252_pm.png?w=100&f=webp" },
+            { name: "Taylor Swift", image: " https://upload.wikimedia.org/wikipedia/commons/b/b1/Taylor_Swift_at_the_2023_MTV_Video_Music_Awards_%283%29.png" }];
+
+        let currentScore = 0;
+
+        function chooseRandomElements(arr, numElements) {
+            const shuffledArray = arr.slice();
+            for (let i = shuffledArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+            }
+            return shuffledArray.slice(0, numElements);
+        }
+
+        function displayQuestion() {
+            const chosenStaff = chooseRandomElements(staff, 1)[0];
+            const questionElement = document.getElementById("question");
+            const imagesElement = document.getElementById("images");
+            questionElement.innerHTML = `<div>Who is <span class="underline">${chosenStaff.name}</span>?</div>`;
+            const allStaffExceptChosen = staff.filter(person => person != chosenStaff);
+            const chosenImages = chooseRandomElements(allStaffExceptChosen, 3);
+            imagesElement.innerHTML = `<img src="${chosenStaff.image}" alt="${chosenStaff.name}" class="person-img" xx="checkAnswer('${chosenStaff.name}', '${chosenStaff.name}')">` + chosenImages.map(person => `<img src="${person.image}" alt="${person.name}" class="person-img" xx="checkAnswer('${person.name}', '${chosenStaff.name}')">`).join("");
+        }
+
+
+        function checkAnswer(selectedName, correctName) {
+            if (selectedName == correctName) {
+                currentScore++;
+                document.getElementById("score").textContent = currentScore;
+                displayQuestion();
+            } else {
+                alert("That was incorrect!");
+                const images = document.querySelectorAll(".person-img");
+                images.forEach(image => image.onclick = null);
+            }
+        }
+
+        window.onload = displayQuestion;
+    </script>
+</body>
+
+</html>
