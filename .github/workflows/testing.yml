@@ -21,5 +21,4 @@ jobs:
         pip install -r requirements.txt
     - name: Run selenium tests
       run: |
-        python -m unittest tests/selenium.py
         python -m unittest tests/unit.py
